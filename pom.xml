@@ -19,13 +19,13 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	    <java-version-compliance>8</java-version-compliance>
+		<java-version-compliance>8</java-version-compliance>
 		<maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 		<maven.compiler.target>${java-version-compliance}</maven.compiler.target>
-		<fj-bom-version>1.6.3</fj-bom-version>
+		<fj-bom-version>1.6.4</fj-bom-version>
 		<fj-version>8.5.3</fj-version>
 		<fj-service-helper-version>0.3.3</fj-service-helper-version>
-		<native-helper-maven-plugin-version>1.3.2</native-helper-maven-plugin-version>
+		<native-helper-maven-plugin-version>1.3.3</native-helper-maven-plugin-version>
 	</properties>	
 
 	<organization>
@@ -134,8 +134,10 @@
 					</execution>
 				</executions>
 				<configuration>
+					<!-- file di configurazione per la generazione dei metadati -->
 					<nativeHelperConfigPath>src/main/config/native-helper-config.yaml</nativeHelperConfigPath>
-					<reflectConfigJsonOutputPath>${project.basedir}/src/main/resources/META-INF/native-image/reflect-config.json</reflectConfigJsonOutputPath>
+					<!-- aggiungiamo direttamente i metadati alla directory di output del progetto -->
+					<reflectConfigJsonOutputPath>${project.build.outputDirectory}/META-INF/native-image/reflect-config.json</reflectConfigJsonOutputPath>
 					<warnOnError>true</warnOnError>
 				</configuration>
 			</plugin>

@@ -1,7 +1,8 @@
 # native-helper-graalvm generation configuration
 ---
-reflectConfigJsonOutputPath: src/main/resources/META-INF/native-image/reflect-config.json
 createParentDirectory: true
 generate:
   - className: io.github.caffetteria.nmd.Persona
+    mode: getters
+  - className: io.github.caffetteria.nmd.Ruolo
     mode: getters

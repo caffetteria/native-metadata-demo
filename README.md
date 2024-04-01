@@ -23,8 +23,10 @@ Aggiung il plugin al tuo file *pom.xml* :
         </execution>
     </executions>
     <configuration>
+        <!-- file di configurazione per la generazione dei metadati -->
         <nativeHelperConfigPath>src/main/config/native-helper-config.yaml</nativeHelperConfigPath>
-        <reflectConfigJsonOutputPath>${project.basedir}/src/main/resources/META-INF/native-image/reflect-config.json</reflectConfigJsonOutputPath>
+        <!-- aggiungiamo direttamente i metadati alla directory di output del progetto -->
+        <reflectConfigJsonOutputPath>${project.build.outputDirectory}/META-INF/native-image/reflect-config.json</reflectConfigJsonOutputPath>
         <warnOnError>true</warnOnError>
     </configuration>
 </plugin>
