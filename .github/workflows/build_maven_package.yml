@@ -1,0 +1,28 @@
+# CI with maven build and scan
+#
+# version 1.1.0
+#
+# see : https://universe.fugerit.org/src/docs/conventions/workflows/build_maven_package.html
+
+name: CI maven build and scan
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fugerit-org/psychic-actions/maven-build-scan@stable
+        with:
+          java-version: '21'
+          disable-maven-dependency-submission: ${{ vars.DISABLE_MAVEN_DEPENDENCY_SUBMISSION }}
