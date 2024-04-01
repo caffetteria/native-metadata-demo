@@ -1,2 +1,31 @@
 # native-metadata-demo
-Semplice progetto dimostrativo sui metadata per la compilazione nativa
+
+Semplice progetto dimostrativo sui metadata per la compilazione nativa.
+
+Vedi [native-helper-maven-plugin](https://github.com/fugerit-org/native-helper-maven-plugin) per maggiori informazioni.
+
+## Quickstart
+
+Aggiung il plugin al tuo file *pom.xml* :
+
+```xml
+<plugin>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>native-helper-maven-plugin</artifactId>
+    <version>${native-helper-maven-plugin-version}</version>
+    <executions>
+        <execution>
+            <id>generate-native-configuration</id>
+            <phase>prepare-package</phase>
+            <goals>
+                <goal>nativeHelper</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <nativeHelperConfigPath>src/main/config/native-helper-config.yaml</nativeHelperConfigPath>
+        <reflectConfigJsonOutputPath>${project.basedir}/src/main/resources/META-INF/native-image/reflect-config.json</reflectConfigJsonOutputPath>
+        <warnOnError>true</warnOnError>
+    </configuration>
+</plugin>
+```
