@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.github.caffetteria</groupId>
+	<artifactId>native-metadata-demo</artifactId>
+
+	<name>Native Metadata Demo</name>
+	<description>Progetto dimostrativo per il plugin di generazione dei metadata nativi GraalVM</description>
+	<version>0.1.0-SNAPSHOT</version>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/license/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <java-version-compliance>8</java-version-compliance>
+		<maven.compiler.source>${java-version-compliance}</maven.compiler.source>
+		<maven.compiler.target>${java-version-compliance}</maven.compiler.target>
+		<fj-bom-version>1.6.3</fj-bom-version>
+		<fj-version>8.5.3</fj-version>
+		<fj-service-helper-version>0.3.3</fj-service-helper-version>
+		<native-helper-maven-plugin-version>1.3.1</native-helper-maven-plugin-version>
+	</properties>	
+
+	<organization>
+		<url>https://github.com/caffetteria</url>
+		<name>Caffetteria</name>
+	</organization>
+	
+	<url>https://github.com/caffetteria</url>
+	
+	<scm>
+		<connection>scm:git:git://github.com/caffetteria/native-metadata-demo.git</connection>
+		<developerConnection>scm:git:ssh://github.com/caffetteria/native-metadata-demo.git</developerConnection>
+		<url>https://github.com/caffetteria/native-metadata-demo.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/caffetteria/native-metadata-demo/issues</url>
+	</issueManagement>
+
+	<!--
+		https://central.sonatype.org/publish/publish-maven/#distribution-management-and-authentication
+		https://central.sonatype.org/publish/publish-portal-maven/#credentials
+	-->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>central</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>central</id>
+			<url>https://s01.oss.sonatype.org//service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-bom</artifactId>
+				<version>${fj-bom-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-service-helper-bom</artifactId>
+				<version>${fj-service-helper-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-core</artifactId>
+			<version>${fj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>emp-service-model</artifactId>
+			<version>${fj-service-helper-version}</version>
+		</dependency>
+
+		<!-- dev dependencies -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>native-helper-maven-plugin</artifactId>
+				<version>${native-helper-maven-plugin-version}</version>
+				<executions>
+					<execution>
+						<id>nativeHelper</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<nativeHelperConfigPath>src/main/config/native-helper-config.yaml</nativeHelperConfigPath>
+					<reflectConfigJsonOutputPath>${project.basedir}/src/main/resources/META-INF/native-image/reflect-config.json</reflectConfigJsonOutputPath>
+					<warnOnError>true</warnOnError>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<developers>
+		<developer>
+			<name>Matteo Franci</name>
+			<email>mttfranci@gmail.com</email>
+			<url>https://github.com/mttfranci/</url>
+			<timezone>+1</timezone>
+			<organization>Caffetteria</organization>
+			<organizationUrl>https://github.com/caffetteria/</organizationUrl>
+			<roles>
+				<role>IT Senior Consultant</role>
+				<role>Senior Software Architect</role>
+			</roles>
+		</developer>
+	</developers>
+
+</project>
