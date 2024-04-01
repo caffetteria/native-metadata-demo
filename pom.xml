@@ -24,8 +24,8 @@
 		<maven.compiler.target>${java-version-compliance}</maven.compiler.target>
 		<fj-bom-version>1.6.4</fj-bom-version>
 		<fj-version>8.5.3</fj-version>
-		<fj-service-helper-version>0.3.3</fj-service-helper-version>
-		<native-helper-maven-plugin-version>1.3.3</native-helper-maven-plugin-version>
+		<fj-service-helper-version>1.0.0</fj-service-helper-version>
+		<native-helper-maven-plugin-version>1.3.4</native-helper-maven-plugin-version>
 	</properties>	
 
 	<organization>
