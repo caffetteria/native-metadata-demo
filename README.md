@@ -4,6 +4,8 @@ Semplice progetto dimostrativo sui metadata per la compilazione nativa.
 
 Vedi [native-helper-maven-plugin](https://github.com/fugerit-org/native-helper-maven-plugin) per maggiori informazioni.
 
+[![CI maven build and scan](https://github.com/caffetteria/native-metadata-demo/actions/workflows/build_maven_package.yml/badge.svg)](https://github.com/caffetteria/native-metadata-demo/actions/workflows/build_maven_package.yml)
+
 ## Quickstart
 
 Aggiung il plugin al tuo file *pom.xml* :
